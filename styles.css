@@ -358,18 +358,20 @@ body.is-locked {
 }
 
 .hero__label {
-  font-family: var(--font-display);
-  font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+  display: block;
+  width: 100%;
+  font-family: var(--font-intro);
+  font-size: clamp(1.35rem, 5.2vw, 1.85rem);
   font-weight: 400;
   font-style: italic;
   letter-spacing: 0.02em;
   text-transform: none;
   color: var(--text-soft);
-  margin-bottom: 0.65rem;
-  line-height: 1.45;
-  max-width: 22em;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 0 0.75rem;
+  padding: 0 0.15rem;
+  line-height: 1.35;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .hero__photo {
@@ -693,8 +695,8 @@ main {
   }
 
   .hero__label {
-    letter-spacing: 0.12em;
-    font-size: 0.62rem;
+    font-size: clamp(1.25rem, 5.5vw, 1.7rem);
+    line-height: 1.32;
   }
 
   main { padding: 0 0.75rem 1.5rem; }
