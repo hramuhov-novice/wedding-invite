@@ -745,24 +745,50 @@ main {
     --bg-crop-top: 16px;
   }
 
-  /* Экран конверта: фон сакуры/цветов на всю высоту (без полос сверху/снизу) */
+  /* Экран конверта: розовый фон + цветы слева, без растягивания */
   .intro {
     min-height: 100vh;
     min-height: 100dvh;
     min-height: 100svh;
-    background-image: url("./images/FON KONVERTA.jpg");
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: cover;
+    background-color: var(--intro-bg);
+    background-image: none;
+  }
+
+  .intro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(247, 212, 212, 0.35) 38%,
+      rgba(247, 212, 212, 0.9) 52%,
+      var(--intro-bg) 64%
+    );
   }
 
   .intro__flowers {
-    width: 100%;
+    width: auto;
     height: 100%;
-    max-width: none;
-    min-height: 100%;
-    object-fit: cover;
+    max-width: min(68vw, 280px);
+    object-fit: contain;
     object-position: left center;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      #000 0%,
+      #000 55%,
+      rgba(0, 0, 0, 0.45) 72%,
+      transparent 88%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      #000 0%,
+      #000 55%,
+      rgba(0, 0, 0, 0.45) 72%,
+      transparent 88%
+    );
   }
 
   .hero {
@@ -879,13 +905,8 @@ main {
   }
 
   .intro__flowers {
+    object-fit: contain !important;
     object-position: left center !important;
-  }
-
-  @media (max-width: 768px) {
-    .intro__flowers {
-      object-fit: cover !important;
-    }
   }
 
   .intro__title,
