@@ -1,4 +1,4 @@
-const WEDDING_DATE = new Date("2026-08-15T15:00:00");
+const WEDDING_DATE = new Date("2026-09-12T14:30:00");
 const daysEl = document.getElementById("days");
 const hoursEl = document.getElementById("hours");
 const minutesEl = document.getElementById("minutes");

@@ -18,6 +18,7 @@
   --bg-pos-x: 50%;
   --bg-pos-y: 71%;
   --bg-crop-top: 14px;
+  --intro-bg: #f7d4d4;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,6 +49,7 @@ body.is-locked {
   overflow: hidden;
   height: 100vh;
   height: 100dvh;
+  background-color: var(--intro-bg);
 }
 
 /* ——— Экран с конвертом ——— */
@@ -64,14 +66,39 @@ body.is-locked {
     max(2.5rem, calc(env(safe-area-inset-top) + 1.5rem))
     1.25rem
     max(1rem, env(safe-area-inset-bottom));
-  background-color: #fdf4f8;
-  background-image:
-    radial-gradient(ellipse 80% 60% at 50% 20%, rgba(255, 255, 255, 0.9) 0%, transparent 70%),
-    linear-gradient(165deg, #fdf4f8 0%, #f3e6ee 40%, #ebe4f4 100%);
+  background-color: var(--intro-bg);
   transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   isolation: isolate;
   -webkit-filter: none !important;
   filter: none !important;
+}
+
+.intro__flowers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 68%,
+    rgba(0, 0, 0, 0.5) 84%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 68%,
+    rgba(0, 0, 0, 0.5) 84%,
+    transparent 100%
+  );
 }
 
 .intro__title {
@@ -122,6 +149,7 @@ body.is-locked {
   width: min(300px, 80vw);
   height: 198px;
   perspective: 900px;
+  overflow: visible;
   pointer-events: auto;
   -webkit-filter: none !important;
   filter: none !important;
@@ -142,6 +170,7 @@ body.is-locked {
 .envelope__back {
   position: absolute;
   inset: 22% 0 0;
+  z-index: 1;
   background: #fafafa;
   border: 1px solid #e6dce0;
   border-radius: 2px 2px 4px 4px;
@@ -161,8 +190,36 @@ body.is-locked {
   border-radius: 0 0 4px 4px;
   clip-path: polygon(0 0, 50% 42%, 100% 0, 100% 100%, 0 100%);
   box-shadow: 0 6px 20px rgba(60, 30, 45, 0.1);
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
+}
+
+/* Кольца — нижняя зона конверта, под клапаном (не перекрываются) */
+.envelope__photo {
+  --rings-width: 72%;
+  position: absolute;
+  left: 50%;
+  top: 74%;
+  bottom: 0;
+  width: var(--rings-width);
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.envelope__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .envelope__flap {
@@ -739,6 +796,10 @@ main {
     height: 182px;
   }
 
+  .envelope__photo {
+    --rings-width: 68%;
+  }
+
   .envelope__seal {
     width: 58px;
     height: 58px;
@@ -792,12 +853,14 @@ main {
   }
 
   .intro {
-    background-color: #fdf4f8 !important;
-    background-image:
-      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(255, 255, 255, 0.9) 0%, transparent 70%),
-      linear-gradient(165deg, #fdf4f8 0%, #f3e6ee 40%, #ebe4f4 100%) !important;
+    background-color: var(--intro-bg) !important;
     -webkit-filter: none !important;
     filter: none !important;
+  }
+
+  .intro__flowers {
+    object-fit: contain !important;
+    object-position: left center !important;
   }
 
   .intro__title,

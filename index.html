@@ -5,23 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Приглашение на свадьбу">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#fdf4f8">
+  <meta name="theme-color" content="#f7d4d4">
   <meta name="supported-color-schemes" content="light">
   <title>Свадьба — приглашение</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=19">
+  <link rel="stylesheet" href="./styles.css?v=38">
   <link rel="stylesheet" href="./embedded-bg.css?v=2">
 </head>
 <body class="is-locked">
 
   <div class="intro" id="intro">
+    <img
+      class="intro__flowers"
+      src="./images/FON KONVERTA.jpg"
+      alt=""
+      aria-hidden="true"
+      decoding="async"
+      fetchpriority="high"
+    >
     <p class="intro__title">Приглашение на свадьбу</p>
     <div class="envelope" id="envelope">
       <div class="envelope__shadow" aria-hidden="true"></div>
       <div class="envelope__back" aria-hidden="true"></div>
       <div class="envelope__pocket" aria-hidden="true"></div>
+      <div class="envelope__photo" aria-hidden="true">
+        <img src="./images/kolca.jpg?v=1" alt="" decoding="async">
+      </div>
       <div class="envelope__flap" aria-hidden="true"></div>
       <button type="button" class="envelope__seal" id="seal" aria-label="Открыть приглашение">
         <span class="envelope__seal-mark" aria-hidden="true">♥</span>
@@ -45,7 +56,7 @@
       <div class="hero__photo" aria-label="Фото молодожёнов">
         <div class="hero__photo-frame"></div>
       </div>
-      <p class="hero__date">15 августа 2026</p>
+      <p class="hero__date">12 сентября 2026</p>
       <div class="ornament" aria-hidden="true">✦</div>
     </header>
 
@@ -90,22 +101,17 @@
           <article class="detail-card">
             <span class="detail-card__icon" aria-hidden="true">📅</span>
             <h3>Дата</h3>
-            <p>15 августа 2026, суббота</p>
-          </article>
-          <article class="detail-card">
-            <span class="detail-card__icon" aria-hidden="true">🕐</span>
-            <h3>Сбор гостей</h3>
-            <p>15:00</p>
+            <p>12 сентября 2026, суббота</p>
           </article>
           <article class="detail-card">
             <span class="detail-card__icon" aria-hidden="true">💒</span>
-            <h3>Церемония</h3>
-            <p>16:00</p>
+            <h3>Регистрация</h3>
+            <p>14:30</p>
           </article>
           <article class="detail-card">
             <span class="detail-card__icon" aria-hidden="true">🥂</span>
-            <h3>Банкет</h3>
-            <p>18:00</p>
+            <h3>Сбор в кафе</h3>
+            <p>17:00</p>
           </article>
         </div>
       </section>
@@ -113,12 +119,12 @@
       <section class="section section--venue" aria-labelledby="venue-title">
         <h2 id="venue-title" class="section__title">Место проведения</h2>
         <div class="card card--venue">
-          <h3>Ресторан «Название»</h3>
-          <p class="venue__address">г. Москва, ул. Примерная, д. 1</p>
+          <h3>Кафе «Самеба»</h3>
+          <p class="venue__address">г. Энгельс, ул. Советская, д. 138</p>
           <p class="venue__note">Будем ждать вас с нетерпением!</p>
           <a
             class="btn"
-            href="https://yandex.ru/maps/"
+            href="https://yandex.ru/maps/org/sameba/1643159597/"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -177,6 +183,6 @@
     </footer>
   </div>
 
-  <script src="./script.js?v=3" defer></script>
+  <script src="./script.js?v=4" defer></script>
 </body>
 </html>
