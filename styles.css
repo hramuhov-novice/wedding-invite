@@ -745,6 +745,26 @@ main {
     --bg-crop-top: 16px;
   }
 
+  /* Экран конверта: фон сакуры/цветов на всю высоту (без полос сверху/снизу) */
+  .intro {
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: 100svh;
+    background-image: url("./images/FON KONVERTA.jpg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+  }
+
+  .intro__flowers {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: left center;
+  }
+
   .hero {
     margin: 0.6rem 0.65rem 0;
     padding: 1rem 1rem 0.85rem;
@@ -859,8 +879,13 @@ main {
   }
 
   .intro__flowers {
-    object-fit: contain !important;
     object-position: left center !important;
+  }
+
+  @media (max-width: 768px) {
+    .intro__flowers {
+      object-fit: cover !important;
+    }
   }
 
   .intro__title,
