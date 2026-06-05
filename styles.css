@@ -745,11 +745,12 @@ main {
     --bg-crop-top: 16px;
   }
 
-  /* Экран конверта: розовый фон + цветы слева, без растягивания */
+  /* Экран конверта: цветы на всю высоту, розовый фон, текст справа читаемый */
   .intro {
     min-height: 100vh;
     min-height: 100dvh;
     min-height: 100svh;
+    overflow: hidden;
     background-color: var(--intro-bg);
     background-image: none;
   }
@@ -763,31 +764,32 @@ main {
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(247, 212, 212, 0.35) 38%,
-      rgba(247, 212, 212, 0.9) 52%,
-      var(--intro-bg) 64%
+      transparent 48%,
+      rgba(247, 212, 212, 0.55) 62%,
+      rgba(247, 212, 212, 0.96) 72%,
+      var(--intro-bg) 82%
     );
   }
 
   .intro__flowers {
     width: auto;
     height: 100%;
-    max-width: min(68vw, 280px);
+    max-width: none;
     object-fit: contain;
     object-position: left center;
     -webkit-mask-image: linear-gradient(
       90deg,
       #000 0%,
-      #000 55%,
-      rgba(0, 0, 0, 0.45) 72%,
-      transparent 88%
+      #000 62%,
+      rgba(0, 0, 0, 0.55) 78%,
+      transparent 92%
     );
     mask-image: linear-gradient(
       90deg,
       #000 0%,
-      #000 55%,
-      rgba(0, 0, 0, 0.45) 72%,
-      transparent 88%
+      #000 62%,
+      rgba(0, 0, 0, 0.55) 78%,
+      transparent 92%
     );
   }
 
