@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff8fb"/>
+      <stop offset="55%" stop-color="#ffe8f0"/>
+      <stop offset="100%" stop-color="#f5d4e4"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#e8d8cf"/>
+      <stop offset="100%" stop-color="#d4b8a8"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffb8d0" stop-opacity="0.9"/>
+      <stop offset="70%" stop-color="#f8a0c0" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#f8d0e0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <ellipse cx="960" cy="200" rx="700" ry="180" fill="#ffd0e8" opacity="0.5"/>
+  <path d="M400 1080 L860 420 L1060 420 L1520 1080 Z" fill="url(#path)" opacity="0.85"/>
+  <path d="M0 1080 L400 1080 L860 420 L700 420 Z" fill="#c9a090" opacity="0.3"/>
+  <path d="M1920 1080 L1520 1080 L1060 420 L1220 420 Z" fill="#c9a090" opacity="0.3"/>
+  <g opacity="0.85">
+    <ellipse cx="120" cy="320" rx="200" ry="160" fill="url(#bloom)"/>
+    <ellipse cx="320" cy="280" rx="180" ry="150" fill="url(#bloom)"/>
+    <ellipse cx="80" cy="480" rx="160" ry="130" fill="url(#bloom)"/>
+    <ellipse cx="1800" cy="300" rx="220" ry="170" fill="url(#bloom)"/>
+    <ellipse cx="1600" cy="260" rx="190" ry="155" fill="url(#bloom)"/>
+    <ellipse cx="1840" cy="460" rx="150" ry="120" fill="url(#bloom)"/>
+    <ellipse cx="200" cy="180" rx="140" ry="100" fill="#ffc8e0" opacity="0.6"/>
+    <ellipse cx="1720" cy="160" rx="160" ry="110" fill="#ffc8e0" opacity="0.6"/>
+    <ellipse cx="500" cy="120" rx="120" ry="80" fill="#ffe0f0" opacity="0.5"/>
+    <ellipse cx="1420" cy="100" rx="130" ry="85" fill="#ffe0f0" opacity="0.5"/>
+  </g>
+  <g fill="#f8b4d0" opacity="0.7">
+    <circle cx="300" cy="400" r="8"/><circle cx="450" cy="350" r="6"/><circle cx="150" cy="550" r="7"/>
+    <circle cx="1620" cy="380" r="9"/><circle cx="1750" cy="500" r="6"/><circle cx="1480" cy="320" r="7"/>
+    <circle cx="960" cy="250" r="5"/><circle cx="800" cy="300" r="6"/><circle cx="1100" cy="280" r="5"/>
+    <circle cx="600" cy="500" r="4"/><circle cx="1300" cy="480" r="5"/><circle cx="900" cy="450" r="4"/>
+  </g>
+  <rect x="750" y="400" width="420" height="680" fill="url(#path)" opacity="0.15"/>
+</svg>
