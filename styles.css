@@ -625,6 +625,40 @@ main {
 
 .card--venue { text-align: center; }
 
+.maps-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #e8a0bc 0%, var(--pink-deep) 100%);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 4px 12px rgba(196, 93, 133, 0.3);
+}
+.map-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(196, 93, 133, 0.45);
+  background: linear-gradient(135deg, #d78aa8 0%, var(--pink-deep) 100%);
+}
+@media (max-width: 768px) {
+  .maps-actions {
+    flex-direction: column;
+  }
+}
+
 .card--venue .venue__address {
   font-size: 1rem;
   color: var(--text);
@@ -699,11 +733,13 @@ main {
   border-radius: 50px;
   background: var(--white);
   transition: background 0.2s, color 0.2s;
+  outline: none;
 }
 
 .contact-link:hover {
   background: var(--pink-deep);
   color: var(--white);
+  text-decoration: none;
 }
 
 .footer {
@@ -794,6 +830,33 @@ main {
     );
   }
 
+  .intro__title {
+    width: min(100%, 320px);
+    margin-left: auto;
+    margin-right: 0;
+    padding: 0.55rem 1rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 1);
+    color: var(--text);
+    text-wrap: balance;
+  }
+
+  .intro__hint {
+    width: min(100%, 280px);
+    margin-left: auto;
+    margin-right: 0;
+    padding: 0.45rem 0.85rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow);
+    border: 1px solid rgba(220, 180, 195, 0.55);
+    color: var(--text-soft);
+    opacity: 1;
+    text-wrap: balance;
+  }
+
   .hero {
     margin: 0.6rem 0.65rem 0;
     padding: 1rem 1rem 0.85rem;
@@ -816,11 +879,12 @@ main {
 
   .card h2, .card h3 { font-size: 1.2rem; }
 
-  .btn,
-  .contact-link {
-    width: 100%;
-    max-width: 280px;
-  }
+.btn,
+.contact-link {
+  width: 100%;
+  max-width: 280px;
+  text-decoration: none;
+}
 }
 
 @media (max-width: 480px) {
@@ -830,8 +894,14 @@ main {
   }
 
   .intro__title {
-    font-size: clamp(1.6rem, 7.5vw, 2.35rem);
+    font-size: clamp(1.45rem, 6.8vw, 2.1rem);
     margin-bottom: 1.1rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .intro__hint {
+    font-size: clamp(0.72rem, 2.6vw, 0.82rem);
+    padding: 0.4rem 0.75rem;
   }
 
   .hero__photo {
@@ -938,7 +1008,7 @@ main {
   line-height: 1.25;
 }
 
-/* ... rest of code ... */страницу в «ночном» режиме */
+/* ... rest of code ... */
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: light only;
@@ -1000,8 +1070,8 @@ main {
     background: var(--card-bg) !important;
     color: inherit !important;
   }
-}
 
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
