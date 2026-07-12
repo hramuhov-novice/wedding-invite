@@ -735,7 +735,7 @@ main {
 .contact-item__label {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--pink-deep);
   letter-spacing: 0.03em;
@@ -769,6 +769,29 @@ main {
   border-color: var(--pink-deep);
   text-decoration: none;
   box-shadow: 0 4px 14px rgba(196, 93, 133, 0.28);
+}
+
+.contact-item--groom {
+  background: rgba(214, 232, 248, 0.94);
+  border-color: rgba(74, 126, 184, 0.45);
+  box-shadow: 0 2px 12px rgba(74, 126, 184, 0.14);
+}
+
+.contact-item--groom .contact-item__label {
+  color: #2a5078;
+}
+
+.contact-item--groom .contact-link {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(74, 126, 184, 0.5);
+  color: #2a5078;
+}
+
+.contact-item--groom .contact-link:hover {
+  background: #4a7eb8;
+  border-color: #4a7eb8;
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(74, 126, 184, 0.32);
 }
 
 .footer {
