@@ -1146,8 +1146,7 @@ main {
   .intro,
   .site {
     transition-duration: 0.01ms !important;
-  } 
-}
+  }
 /* ==========================================================================
    ИСПРАВЛЕННЫЙ ВАРИАНТ СТРОГО ПО КЛАССАМ ТВОЕГО САЙТА
    ========================================================================== */
@@ -1189,8 +1188,8 @@ main {
   
     /* 2. КНОПКИ КАРТ В ОДИН РЯД (ЖЕЛЕЗОБЕТОННО) */
     /* Находим именно те параграфы, в которых лежат ссылки на карты */
-    .registry-section p:has(a), 
-    .location-section p:has(a) {
+    .registry-section p, 
+    .location-section p {
       display: flex !important;
       flex-direction: row !important;     /* Строго в ряд */
       justify-content: center !important;
@@ -1212,10 +1211,10 @@ main {
     /* Поджимаем ширину кнопок, чтобы они физически влезли в экран телефона */
     .registry-section button, 
     .location-section button {
-      padding: 10px 12px !important;     /* Уменьшаем внутренние отступы кнопок */
-      font-size: 0.8rem !important;       /* Чуть меньше шрифт */
+      padding: 10px 4px !important;      /* Компактные внутренние отступы кнопок */
+      font-size: 0.85rem !important;      /* Размер шрифта, чтобы текст не вылезал */
       white-space: nowrap !important;     /* Запрещаем тексту внутри кнопок рваться */
-      width: 130px !important;            /* Фиксированная аккуратная ширина */
+      width: 135px !important;            /* Фиксированная аккуратная ширина */
     }
   }
   
