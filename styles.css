@@ -1146,5 +1146,46 @@ main {
   .intro,
   .site {
     transition-duration: 0.01ms !important;
-  }
+  } 
 }
+/* ==========================================================================
+   ИЗЯЩНЫЙ И КРАСИВЫЙ ШРИФТ ДЛЯ ДЕТАЛЕЙ
+   ========================================================================== */
+
+/* Плашки оставляем аккуратными */
+.detail-card {
+  padding: 16px 10px !important; 
+}
+
+/* Иконки делаем чуть нежнее */
+.detail-card_icon {
+  font-size: 1.25rem !important; 
+  margin-bottom: 5px !important; 
+}
+
+/* Исправляем заголовки (Дата, Регистрация, Сбор в кафе) */
+.detail-card h3 {
+  font-family: var(--font-body) !important;
+  font-size: 1rem !important;             /* Чуть уменьшаем размер */
+  font-weight: 500 !important;            /* Убираем грубую жирность (ставим среднюю) */
+  letter-spacing: 0.05em !important;      /* Добавляем воздух между буквами */
+  margin-bottom: 4px !important;
+  color: var(--text) !important;
+}
+
+/* Настраиваем нижний текст (время и дату) */
+.detail-card p {
+  font-family: var(--font-body) !important;
+  font-size: 0.85rem !important;          /* Делаем аккуратным */
+  font-weight: 400 !important;            /* Тонкий, легкий шрифт */
+  letter-spacing: 0.02em !important;      /* Немного раздвигаем буквы */
+  line-height: 1.3 !important;
+  color: var(--text-soft) !important;
+}
+
+/* Расстояние между карточками */
+.details {
+  gap: 12px !important; 
+}
+
+
