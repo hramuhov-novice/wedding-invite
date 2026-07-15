@@ -234,7 +234,10 @@ body.is-locked {
   border: 1px solid #e6dce0;
   clip-path: polygon(0 0, 50% 100%, 100% 0);
   transform-origin: top center;
+  transition: transform 6.5s ease-in-out !important;
+/*
   transition: transform 4.5s cubic-bezier(0.4, 0.2, 0.02, 1) !important;
+  */
   z-index: 3;
   box-shadow: 0 2px 8px rgba(60, 30, 45, 0.06);
   pointer-events: none;
@@ -1203,7 +1206,23 @@ main {
       border: none !important;             /* СНОСИМ ЧЕРНУЮ ОБВОДКУ РАЗ */
       outline: none !important;            /* СНОСИМ ЧЕРНУЮ ОБВОДКУ ДВА */
       box-shadow: none !important;         /* Убираем лишние тени, если они косят */
+    } /* Это закрылась скобка от .map-btn на строчке 6 */
+
+    /* Исправляем шрифт в блоке Кафе (убираем Times New Roman) */
+    .location-section h3,
+    .location-section p,
+    .location-section span,
+    .location-section strong {
+      font-family: var(--font-body) !important; /* Принудительно ставим Montserrat */
+      font-style: normal !important;            /* Убираем лишний наклон, если он есть */
     }
-  } 
-  }
+  
+    /* Делаем название кафе и адрес акцентными, но аккуратными */
+    .location-section strong {
+      font-weight: 600 !important;              /* Красивая благородная жирность */
+      color: var(--text) !important;
+    }
+  
+  } /* А ВОТ ЭТА САМАЯ ПОСЛЕДНЯЯ СКОБКА ЗАКРЫВАЕТ ВЕСЬ МЕДИА-ЗАПРОС @MEDIA */
+  
   
