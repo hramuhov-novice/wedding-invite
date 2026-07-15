@@ -1149,43 +1149,61 @@ main {
   } 
 }
 /* ==========================================================================
-   ИЗЯЩНЫЙ И КРАСИВЫЙ ШРИФТ ДЛЯ ДЕТАЛЕЙ
+   ФИКСЫ СТРОГО ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (ЭКРАНЫ МЕНЬШЕ 768px)
    ========================================================================== */
-
-/* Плашки оставляем аккуратными */
-.detail-card {
-  padding: 16px 10px !important; 
-}
-
-/* Иконки делаем чуть нежнее */
-.detail-card_icon {
-  font-size: 1.25rem !important; 
-  margin-bottom: 5px !important; 
-}
-
-/* Исправляем заголовки (Дата, Регистрация, Сбор в кафе) */
-.detail-card h3 {
-  font-family: var(--font-body) !important;
-  font-size: 1rem !important;             /* Чуть уменьшаем размер */
-  font-weight: 500 !important;            /* Убираем грубую жирность (ставим среднюю) */
-  letter-spacing: 0.05em !important;      /* Добавляем воздух между буквами */
-  margin-bottom: 4px !important;
-  color: var(--text) !important;
-}
-
-/* Настраиваем нижний текст (время и дату) */
-.detail-card p {
-  font-family: var(--font-body) !important;
-  font-size: 0.85rem !important;          /* Делаем аккуратным */
-  font-weight: 400 !important;            /* Тонкий, легкий шрифт */
-  letter-spacing: 0.02em !important;      /* Немного раздвигаем буквы */
-  line-height: 1.3 !important;
-  color: var(--text-soft) !important;
-}
-
-/* Расстояние между карточками */
-.details {
-  gap: 12px !important; 
-}
+   @media screen and (max-width: 767px) {
+  
+    /* 1. ФИКС КАРТОЧЕК ДЕТАЛЕЙ (чтобы не были скукоженными) */
+    .details {
+      display: flex !important;
+      flex-direction: column !important; /* Выстраиваем их в один столбик */
+      gap: 16px !important;              /* Расстояние между ними */
+      width: 100% !important;
+      padding: 0 10px !important;
+    }
+  
+    .detail-card {
+      width: 100% !important;            /* Карточка растягивается во всю ширину */
+      padding: 24px 16px !important;     /* Увеличиваем внутренние отступы, чтобы плашка стала жирнее */
+    }
+  
+    .detail-card h3 {
+      font-size: 1.25rem !important;     /* Силой увеличиваем заголовки на мобиле */
+    }
+  
+    .detail-card p {
+      font-size: 1rem !important;        /* Силой увеличиваем текст (даты/время) */
+    }
+    
+    .detail-card_icon {
+      font-size: 1.6rem !important;      /* Увеличиваем смайлики */
+    }
+  
+    /* 2. ФИКС КНОПОК КАРТ (чтобы встали друг РЯДОМ с другом) */
+    /* Ищем контейнер, где лежат твои кнопки карт. Скорее всего, у них родитель - это блок ссылки, 
+       либо тебе нужно обернуть кнопки Яндекс и 2ГИС в один общий <div class="map-buttons"> */
+    
+    /* Если кнопки лежат просто в блоке, мы заставим их встать в ряд: */
+    .detail-card a[href*="maps"], 
+    .detail-card a[href*="yandex"], 
+    .detail-card a[href*="2gis"],
+    .map-buttons { 
+      display: flex !important;
+      flex-direction: row !important;    /* Строго в один ряд */
+      justify-content: center !important;
+      gap: 10px !important;              /* Отступ между кнопками */
+      width: 100% !important;
+    }
+  
+    /* Сами кнопочки карт делаем чуть компактнее по ширине, чтобы влезли в одну строку */
+    .detail-card a[href*="yandex"] button,
+    .detail-card a[href*="2gis"] button,
+    .map-btn { 
+      flex: 1 !important;                /* Делит место поровну 50/50 */
+      max-width: 140px !important;       /* Ограничиваем, чтобы не разлетались */
+      font-size: 0.9rem !important;      /* Чуть меньше шрифт, чтобы влезло */
+      padding: 10px 5px !important;
+    }
+  }
 
 
