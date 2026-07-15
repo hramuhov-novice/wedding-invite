@@ -1149,61 +1149,76 @@ main {
   } 
 }
 /* ==========================================================================
-   ФИКСЫ СТРОГО ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (ЭКРАНЫ МЕНЬШЕ 768px)
+   ИДЕАЛЬНЫЙ СБАЛАНСИРОВАННЫЙ ВАРИАНТ ДЛЯ МОБИЛОК
    ========================================================================== */
    @media screen and (max-width: 767px) {
   
-    /* 1. ФИКС КАРТОЧЕК ДЕТАЛЕЙ (чтобы не были скукоженными) */
+    /* 1. Возвращаем карточки в ОДИН РЯД (три аккуратные колонки) */
     .details {
-      display: flex !important;
-      flex-direction: column !important; /* Выстраиваем их в один столбик */
-      gap: 16px !important;              /* Расстояние между ними */
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important; /* Строго 3 колонки в ряд */
+      gap: 6px !important;                               /* Минимальный отступ, чтобы влезли */
+      padding: 0 4px !important;
       width: 100% !important;
-      padding: 0 10px !important;
     }
   
+    /* Сжимаем сами плашки, чтобы они стали маленькими и аккуратными */
     .detail-card {
-      width: 100% !important;            /* Карточка растягивается во всю ширину */
-      padding: 24px 16px !important;     /* Увеличиваем внутренние отступы, чтобы плашка стала жирнее */
+      padding: 10px 4px !important; /* Ужимаем внутренние отступы до минимума */
+      min-height: auto !important;
     }
   
-    .detail-card h3 {
-      font-size: 1.25rem !important;     /* Силой увеличиваем заголовки на мобиле */
-    }
-  
-    .detail-card p {
-      font-size: 1rem !important;        /* Силой увеличиваем текст (даты/время) */
-    }
-    
+    /* Уменьшаем смайлики, чтобы не орали */
     .detail-card_icon {
-      font-size: 1.6rem !important;      /* Увеличиваем смайлики */
+      font-size: 1.1rem !important;
+      margin-bottom: 3px !important;
     }
   
-    /* 2. ФИКС КНОПОК КАРТ (чтобы встали друг РЯДОМ с другом) */
-    /* Ищем контейнер, где лежат твои кнопки карт. Скорее всего, у них родитель - это блок ссылки, 
-       либо тебе нужно обернуть кнопки Яндекс и 2ГИС в один общий <div class="map-buttons"> */
+    /* Заголовки (Дата, Регистрация) делаем компактными */
+    .detail-card h3 {
+      font-size: 0.85rem !important;
+      font-weight: 600 !important;
+      margin-bottom: 2px !important;
+    }
+  
+    /* Нижний текст (время) ужимаем, чтобы не переносился уродливо */
+    .detail-card p {
+      font-size: 0.72rem !important;
+      line-height: 1.2 !important;
+    }
+  
+    /* 2. ЖЕЛЕЗОБЕТОННЫЙ ФИКС ДЛЯ КНОПОК КАРТ В РЯД */
+    /* Твои ссылки обернуты в блоки div class="actions" или идут подряд. 
+       Мы ловим их по ссылкам и заставляем встать плечом к плечу */
     
-    /* Если кнопки лежат просто в блоке, мы заставим их встать в ряд: */
-    .detail-card a[href*="maps"], 
-    .detail-card a[href*="yandex"], 
-    .detail-card a[href*="2gis"],
-    .map-buttons { 
+    .registry-section, .location-section {
       display: flex !important;
-      flex-direction: row !important;    /* Строго в один ряд */
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+  
+    /* Находим кнопки карт и выстраиваем их строго горизонтально */
+    .registry-section a, .location-section a {
+      display: inline-block !important;
+      width: auto !important;
+      margin: 4px !important;
+    }
+  
+    /* Заставляем родительский контейнер кнопок (если он есть) не переносить их */
+    .registry-section p, .location-section p {
+      display: flex !important;
+      flex-direction: row !important;
       justify-content: center !important;
-      gap: 10px !important;              /* Отступ между кнопками */
+      align-items: center !important;
+      flex-wrap: nowrap !important; /* Запрещаем перенос на новую строку */
+      gap: 8px !important;
       width: 100% !important;
     }
   
-    /* Сами кнопочки карт делаем чуть компактнее по ширине, чтобы влезли в одну строку */
-    .detail-card a[href*="yandex"] button,
-    .detail-card a[href*="2gis"] button,
-    .map-btn { 
-      flex: 1 !important;                /* Делит место поровну 50/50 */
-      max-width: 140px !important;       /* Ограничиваем, чтобы не разлетались */
-      font-size: 0.9rem !important;      /* Чуть меньше шрифт, чтобы влезло */
-      padding: 10px 5px !important;
+    /* Чуть поджимаем сами кнопки по ширине, чтобы на узких экранах они не вылезали за края */
+    .registry-section button, .location-section button {
+      padding: 10px 16px !important;
+      font-size: 0.85rem !important;
+      white-space: nowrap !important; /* Текст внутри кнопки в одну строку */
     }
   }
-
-
