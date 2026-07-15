@@ -234,11 +234,12 @@ body.is-locked {
   border: 1px solid #e6dce0;
   clip-path: polygon(0 0, 50% 100%, 100% 0);
   transform-origin: top center;
-  transition: transform 1.15s cubic-bezier(0.33, 0.02, 0.15, 1);
+  transition: transform 2.5s cubic-bezier(0.4, 0.2, 0.02, 1) !important;
   z-index: 3;
   box-shadow: 0 2px 8px rgba(60, 30, 45, 0.06);
   pointer-events: none;
 }
+/* transition: transform это строка отвечающая за плавность открытия конверта по секундам замедляется*/
 
 .envelope--opening .envelope__flap {
   transform: rotateX(-175deg);
@@ -1140,7 +1141,6 @@ main {
   html { scroll-behavior: auto; }
 
   .btn:hover { transform: none; }
-
   .envelope__flap,
   .envelope__seal,
   .intro,
@@ -1148,73 +1148,57 @@ main {
     transition-duration: 0.01ms !important;
   }
 /* ==========================================================================
-   ИСПРАВЛЕННЫЙ ВАРИАНТ СТРОГО ПО КЛАССАМ ТВОЕГО САЙТА
+   ИТОГОВЫЙ РАБОЧИЙ МЕДИА-ЗАПРОС
    ========================================================================== */
    @media screen and (max-width: 767px) {
   
-    /* 1. КАРТОЧКИ ДЕТАЛЕЙ (чтобы стояли в ряд и не ломались) */
+    /* Карточки деталей (держим в ряд) */
     .details {
       display: grid !important;
-      grid-template-columns: repeat(3, 1fr) !important; /* Строго 3 колонки */
-      gap: 4px !important;                               /* Крошечный отступ */
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 4px !important;
       padding: 0 !important;
       width: 100% !important;
     }
   
     .detail-card {
-      padding: 8px 2px !important; /* Максимально сжимаем плашки по бокам */
-      min-height: 90px !important; /* Даем им одинаковую аккуратную высоту */
+      padding: 8px 2px !important;
+      min-height: 90px !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
       align-items: center !important;
     }
   
-    .detail-card_icon {
-      font-size: 1.1rem !important;
-      margin-bottom: 2px !important;
+    .detail-card_icon { font-size: 1.1rem !important; margin-bottom: 2px !important; }
+    .detail-card h3 { font-size: 0.75rem !important; letter-spacing: 0 !important; margin-bottom: 1px !important; }
+    .detail-card p { font-size: 0.68rem !important; line-height: 1.1 !important; }
+  
+    /* КНОПКИ КАРТ: Выстраиваем их общих родителей в ряд */
+    .map-link {
+      display: inline-block !important;
+      width: auto !important;
+      margin: 0 4px !important; /* Отступы по бокам */
     }
   
-    .detail-card h3 {
-      font-size: 0.75rem !important; /* Микро-размер, чтобы влезло в строчку */
-      letter-spacing: 0 !important;
-      margin-bottom: 1px !important;
-    }
-  
-    .detail-card p {
-      font-size: 0.68rem !important; /* Ужимаем время, чтобы не косило */
-      line-height: 1.1 !important;
-    }
-  
-    /* 2. КНОПКИ КАРТ В ОДИН РЯД (ЖЕЛЕЗОБЕТОННО) */
-    /* Находим именно те параграфы, в которых лежат ссылки на карты */
+    /* Находим параграф, в котором сидят эти ссылки, и запрещаем перенос */
     .registry-section p, 
     .location-section p {
       display: flex !important;
-      flex-direction: row !important;     /* Строго в ряд */
-      justify-content: center !important;
+      flex-direction: row !important;     /* Строго в линию */
+      justify-content: center !important;  /* По центру */
       align-items: center !important;
-      flex-wrap: nowrap !important;       /* Запрещаем перенос строк */
-      gap: 8px !important;                /* Отступ между кнопками */
+      flex-wrap: nowrap !important;       /* Запрет переноса строк */
       width: 100% !important;
-      margin-top: 15px !important;
     }
   
-    /* Сами ссылки внутри этих блоков делаем inline */
-    .registry-section p a, 
-    .location-section p a {
-      display: inline-block !important;
-      width: auto !important;
-      margin: 0 !important;
+    /* Сами кнопки ужимаем по ширине */
+    .map-btn {
+      width: 135px !important;            /* Фиксированная ширина */
+      padding: 10px 4px !important;        /* Компактные отступы */
+      font-size: 0.85rem !important;       /* Размер шрифта */
+      white-space: nowrap !important;      /* Текст не рвется */
     }
-  
-    /* Поджимаем ширину кнопок, чтобы они физически влезли в экран телефона */
-    .registry-section button, 
-    .location-section button {
-      padding: 10px 4px !important;      /* Компактные внутренние отступы кнопок */
-      font-size: 0.85rem !important;      /* Размер шрифта, чтобы текст не вылезал */
-      white-space: nowrap !important;     /* Запрещаем тексту внутри кнопок рваться */
-      width: 135px !important;            /* Фиксированная аккуратная ширина */
-    }
+  }  
   }
   
