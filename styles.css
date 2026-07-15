@@ -234,7 +234,7 @@ body.is-locked {
   border: 1px solid #e6dce0;
   clip-path: polygon(0 0, 50% 100%, 100% 0);
   transform-origin: top center;
-  transition: transform 2.5s cubic-bezier(0.4, 0.2, 0.02, 1) !important;
+  transition: transform 4.5s cubic-bezier(0.4, 0.2, 0.02, 1) !important;
   z-index: 3;
   box-shadow: 0 2px 8px rgba(60, 30, 45, 0.06);
   pointer-events: none;
@@ -1148,11 +1148,11 @@ main {
     transition-duration: 0.01ms !important;
   }
 /* ==========================================================================
-   ИТОГОВЫЙ РАБОЧИЙ МЕДИА-ЗАПРОС
+   ФИНАЛЬНЫЙ ЧИСТОВЫЙ КОД ДЛЯ МОБИЛОК (В САМЫЙ НИЗ ФАЙЛА)
    ========================================================================== */
    @media screen and (max-width: 767px) {
   
-    /* Карточки деталей (держим в ряд) */
+    /* Карточки деталей (Дата, Время) — держим аккуратный горизонтальный ряд */
     .details {
       display: grid !important;
       grid-template-columns: repeat(3, 1fr) !important;
@@ -1174,31 +1174,36 @@ main {
     .detail-card h3 { font-size: 0.75rem !important; letter-spacing: 0 !important; margin-bottom: 1px !important; }
     .detail-card p { font-size: 0.68rem !important; line-height: 1.1 !important; }
   
-    /* КНОПКИ КАРТ: Выстраиваем их общих родителей в ряд */
+    /* КНОПКИ КАРТ: Жёстко выстраиваем их родителей в один ряд */
+    .maps-actions {
+      display: flex !important;
+      flex-direction: row !important;      /* Строго в линию */
+      justify-content: center !important;  /* По центру */
+      align-items: center !important;
+      flex-wrap: nowrap !important;        /* Запрещаем перенос строк паровозиком */
+      gap: 10px !important;                /* Отступ между кнопками */
+      width: 100% !important;
+      margin-top: 15px !important;
+    }
+  
+    /* Убираем блочное поведение у тегов ссылок */
     .map-link {
       display: inline-block !important;
       width: auto !important;
-      margin: 0 4px !important; /* Отступы по бокам */
+      margin: 0 !important;
     }
   
-    /* Находим параграф, в котором сидят эти ссылки, и запрещаем перенос */
-    .registry-section p, 
-    .location-section p {
-      display: flex !important;
-      flex-direction: row !important;     /* Строго в линию */
-      justify-content: center !important;  /* По центру */
-      align-items: center !important;
-      flex-wrap: nowrap !important;       /* Запрет переноса строк */
-      width: 100% !important;
-    }
-  
-    /* Сами кнопки ужимаем по ширине */
+    /* САМЫЙ ГЛАВНЫЙ ФИКС: Ужимаем кнопки и убираем уродливую черную обводку */
     .map-btn {
-      width: 135px !important;            /* Фиксированная ширина */
-      padding: 10px 4px !important;        /* Компактные отступы */
+      width: 135px !important;            /* Аккуратная фиксированная ширина */
+      padding: 10px 4px !important;        /* Внутренние отступы */
       font-size: 0.85rem !important;       /* Размер шрифта */
       white-space: nowrap !important;      /* Текст не рвется */
+      
+      border: none !important;             /* СНОСИМ ЧЕРНУЮ ОБВОДКУ РАЗ */
+      outline: none !important;            /* СНОСИМ ЧЕРНУЮ ОБВОДКУ ДВА */
+      box-shadow: none !important;         /* Убираем лишние тени, если они косят */
     }
-  }  
+  } 
   }
   
