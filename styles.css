@@ -1149,76 +1149,73 @@ main {
   } 
 }
 /* ==========================================================================
-   ИДЕАЛЬНЫЙ СБАЛАНСИРОВАННЫЙ ВАРИАНТ ДЛЯ МОБИЛОК
+   ИСПРАВЛЕННЫЙ ВАРИАНТ СТРОГО ПО КЛАССАМ ТВОЕГО САЙТА
    ========================================================================== */
    @media screen and (max-width: 767px) {
   
-    /* 1. Возвращаем карточки в ОДИН РЯД (три аккуратные колонки) */
+    /* 1. КАРТОЧКИ ДЕТАЛЕЙ (чтобы стояли в ряд и не ломались) */
     .details {
       display: grid !important;
-      grid-template-columns: repeat(3, 1fr) !important; /* Строго 3 колонки в ряд */
-      gap: 6px !important;                               /* Минимальный отступ, чтобы влезли */
-      padding: 0 4px !important;
+      grid-template-columns: repeat(3, 1fr) !important; /* Строго 3 колонки */
+      gap: 4px !important;                               /* Крошечный отступ */
+      padding: 0 !important;
       width: 100% !important;
     }
   
-    /* Сжимаем сами плашки, чтобы они стали маленькими и аккуратными */
     .detail-card {
-      padding: 10px 4px !important; /* Ужимаем внутренние отступы до минимума */
-      min-height: auto !important;
+      padding: 8px 2px !important; /* Максимально сжимаем плашки по бокам */
+      min-height: 90px !important; /* Даем им одинаковую аккуратную высоту */
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
     }
   
-    /* Уменьшаем смайлики, чтобы не орали */
     .detail-card_icon {
       font-size: 1.1rem !important;
-      margin-bottom: 3px !important;
-    }
-  
-    /* Заголовки (Дата, Регистрация) делаем компактными */
-    .detail-card h3 {
-      font-size: 0.85rem !important;
-      font-weight: 600 !important;
       margin-bottom: 2px !important;
     }
   
-    /* Нижний текст (время) ужимаем, чтобы не переносился уродливо */
+    .detail-card h3 {
+      font-size: 0.75rem !important; /* Микро-размер, чтобы влезло в строчку */
+      letter-spacing: 0 !important;
+      margin-bottom: 1px !important;
+    }
+  
     .detail-card p {
-      font-size: 0.72rem !important;
-      line-height: 1.2 !important;
+      font-size: 0.68rem !important; /* Ужимаем время, чтобы не косило */
+      line-height: 1.1 !important;
     }
   
-    /* 2. ЖЕЛЕЗОБЕТОННЫЙ ФИКС ДЛЯ КНОПОК КАРТ В РЯД */
-    /* Твои ссылки обернуты в блоки div class="actions" или идут подряд. 
-       Мы ловим их по ссылкам и заставляем встать плечом к плечу */
-    
-    .registry-section, .location-section {
+    /* 2. КНОПКИ КАРТ В ОДИН РЯД (ЖЕЛЕЗОБЕТОННО) */
+    /* Находим именно те параграфы, в которых лежат ссылки на карты */
+    .registry-section p:has(a), 
+    .location-section p:has(a) {
       display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-    }
-  
-    /* Находим кнопки карт и выстраиваем их строго горизонтально */
-    .registry-section a, .location-section a {
-      display: inline-block !important;
-      width: auto !important;
-      margin: 4px !important;
-    }
-  
-    /* Заставляем родительский контейнер кнопок (если он есть) не переносить их */
-    .registry-section p, .location-section p {
-      display: flex !important;
-      flex-direction: row !important;
+      flex-direction: row !important;     /* Строго в ряд */
       justify-content: center !important;
       align-items: center !important;
-      flex-wrap: nowrap !important; /* Запрещаем перенос на новую строку */
-      gap: 8px !important;
+      flex-wrap: nowrap !important;       /* Запрещаем перенос строк */
+      gap: 8px !important;                /* Отступ между кнопками */
       width: 100% !important;
+      margin-top: 15px !important;
     }
   
-    /* Чуть поджимаем сами кнопки по ширине, чтобы на узких экранах они не вылезали за края */
-    .registry-section button, .location-section button {
-      padding: 10px 16px !important;
-      font-size: 0.85rem !important;
-      white-space: nowrap !important; /* Текст внутри кнопки в одну строку */
+    /* Сами ссылки внутри этих блоков делаем inline */
+    .registry-section p a, 
+    .location-section p a {
+      display: inline-block !important;
+      width: auto !important;
+      margin: 0 !important;
+    }
+  
+    /* Поджимаем ширину кнопок, чтобы они физически влезли в экран телефона */
+    .registry-section button, 
+    .location-section button {
+      padding: 10px 12px !important;     /* Уменьшаем внутренние отступы кнопок */
+      font-size: 0.8rem !important;       /* Чуть меньше шрифт */
+      white-space: nowrap !important;     /* Запрещаем тексту внутри кнопок рваться */
+      width: 130px !important;            /* Фиксированная аккуратная ширина */
     }
   }
+  
