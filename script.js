@@ -93,20 +93,20 @@ function initIntro() {
     opened = true;
     seal.disabled = true;
 
-    // Запускаем анимации синхронно - без дополнительных requestAnimationFrame
+    // Добавляем класс для запуска анимации
     envelope.classList.add("envelope--opening");
     intro.classList.add("intro--opening");
 
-    // Показываем основной контент после завершения анимации конверта (4.5s по CSS)
+    // Показываем основной контент после завершения анимации (2800ms)
     window.setTimeout(() => {
       intro.classList.add("intro--done");
       showMainContent();
-    }, 4500);
+    }, 2800);
 
-    // Удаляем intro из DOM после завершения всех переходов
+    // Удаляем intro из DOM после завершения переходов
     window.setTimeout(() => {
       intro.remove();
-    }, 5700);
+    }, 4000);
   }
 
   bindSealOpen(seal, openInvite);
