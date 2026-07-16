@@ -87,23 +87,41 @@ function initIntro() {
   }
 
   let opened = false;
+  const isMobileIntro = window.matchMedia("(max-width: 768px)").matches;
+  const contentRevealMs = isMobileIntro ? 6800 : 1100;
+  const introRemoveMs = isMobileIntro ? 8200 : 2400;
 
   function openInvite() {
     if (opened) return;
     opened = true;
     seal.disabled = true;
 
-    envelope.classList.add("envelope--opening");
-    intro.classList.add("intro--opening");
+    const flap = envelope.querySelector(".envelope__flap");
+    if (flap) {
+      envelope.classList.remove("envelope--opening");
+      flap.style.animation = "none";
+      flap.style.webkitAnimation = "none";
+      void flap.offsetHeight;
+      flap.style.animation = "";
+      flap.style.webkitAnimation = "";
+    }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (flap) void flap.getBoundingClientRect();
+        envelope.classList.add("envelope--opening");
+        intro.classList.add("intro--opening");
+      });
+    });
 
     window.setTimeout(() => {
       intro.classList.add("intro--done");
       showMainContent();
-    }, 1100);
+    }, contentRevealMs);
 
     window.setTimeout(() => {
       intro.remove();
-    }, 2400);
+    }, introRemoveMs);
   }
 
   bindSealOpen(seal, openInvite);

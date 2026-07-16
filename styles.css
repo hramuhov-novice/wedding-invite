@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+.countdown__value {
+    font-family: 'Prata', serif !important;
+    font-variant-numeric: tabular-nums;
+    font-weight: 100 !important;
+}
 :root {
   --pink-light: #fff5f7;
   --pink: #f4c4d4;
@@ -151,6 +158,10 @@ body.is-locked {
   width: min(300px, 80vw);
   height: 198px;
   perspective: 900px;
+  -webkit-perspective: 900px;
+  perspective-origin: top center;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   overflow: visible;
   pointer-events: auto;
   -webkit-filter: none !important;
@@ -234,15 +245,53 @@ body.is-locked {
   border: 1px solid #e6dce0;
   clip-path: polygon(0 0, 50% 100%, 100% 0);
   transform-origin: top center;
-  transition: transform 4.5s cubic-bezier(0.4, 0.2, 0.02, 1) !important;
+  -webkit-transform-origin: top center;
+  transform: rotateX(0deg) translateZ(0);
+  -webkit-transform: rotateX(0deg) translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   z-index: 3;
   box-shadow: 0 2px 8px rgba(60, 30, 45, 0.06);
   pointer-events: none;
 }
-/* transition: transform это строка отвечающая за плавность открытия конверта по секундам замедляется*/
+
+@keyframes envelope-flap-open {
+  from {
+    transform: rotateX(0deg) translateZ(0);
+    -webkit-transform: rotateX(0deg) translateZ(0);
+  }
+
+  to {
+    transform: rotateX(-175deg) translateZ(0);
+    -webkit-transform: rotateX(-175deg) translateZ(0);
+  }
+}
+
+@-webkit-keyframes envelope-flap-open {
+  from {
+    -webkit-transform: rotateX(0deg) translateZ(0);
+    transform: rotateX(0deg) translateZ(0);
+  }
+
+  to {
+    -webkit-transform: rotateX(-175deg) translateZ(0);
+    transform: rotateX(-175deg) translateZ(0);
+  }
+}
 
 .envelope--opening .envelope__flap {
-  transform: rotateX(-175deg);
+  animation-name: envelope-flap-open;
+  -webkit-animation-name: envelope-flap-open;
+  animation-duration: 4.5s;
+  -webkit-animation-duration: 4.5s;
+  animation-timing-function: cubic-bezier(0.4, 0.2, 0.02, 1);
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0.2, 0.02, 1);
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
 }
 
 .envelope__seal {
@@ -640,13 +689,18 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  width: 148px;
+  padding: 0.5rem 0.5rem;
   background: linear-gradient(135deg, #e8a0bc 0%, var(--pink-deep) 100%);
   color: var(--white);
   text-decoration: none;
   border-radius: 8px;
+  border: none;
+  font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 500;
+  white-space: nowrap;
+  box-sizing: border-box;
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   box-shadow: 0 4px 12px rgba(196, 93, 133, 0.3);
 }
@@ -655,18 +709,21 @@ main {
   box-shadow: 0 6px 20px rgba(196, 93, 133, 0.45);
   background: linear-gradient(135deg, #d78aa8 0%, var(--pink-deep) 100%);
 }
-@media (max-width: 768px) {
-  .maps-actions {
-    flex-direction: column;
-  }
-}
 
 .card--venue .venue__address {
+  font-family: var(--font-body);
   font-size: 1rem;
-  color: var(--text);
-  font-weight: 500;
+  color: var(--text-soft);
+  font-weight: 400;
+  font-style: normal;
   margin: 0.35rem 0;
   line-height: 1.35;
+}
+
+.section--venue .card--venue h3 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-style: normal;
 }
 
 .venue__note {
@@ -916,6 +973,12 @@ main {
     text-wrap: balance;
   }
 
+  /* Плавное открытие конверта на мобильных: не обрезаем 3D-анимацию */
+  .intro--opening {
+    overflow: visible;
+    isolation: auto;
+  }
+
   .hero {
     margin: 0.6rem 0.65rem 0;
     padding: 1rem 1rem 0.85rem;
@@ -1146,98 +1209,104 @@ main {
   .intro,
   .site {
     transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
+}
+
 /* ==========================================================================
    ФИНАЛЬНЫЙ ЧИСТОВЫЙ КОД ДЛЯ МОБИЛОК (В САМЫЙ НИЗ ФАЙЛА)
    ========================================================================== */
-   @media screen and (max-width: 767px) {
-  
-    /* Карточки деталей (Дата, Время) — держим аккуратный горизонтальный ряд */
-    .details {
-      display: grid !important;
-      grid-template-columns: repeat(3, 1fr) !important;
-      gap: 4px !important;
-      padding: 0 !important;
-      width: 100% !important;
-    }
-  
-    .detail-card {
-      padding: 8px 2px !important;
-      min-height: 90px !important;
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      align-items: center !important;
-    }
-  
-    .detail-card_icon { font-size: 1.1rem !important; margin-bottom: 2px !important; }
-    .detail-card h3 { font-size: 0.75rem !important; letter-spacing: 0 !important; margin-bottom: 1px !important; }
-    .detail-card p { font-size: 0.68rem !important; line-height: 1.1 !important; }
-  
-    /* КНОПКИ КАРТ: Жёстко выстраиваем их родителей в один ряд */
-    .maps-actions {
-      display: flex !important;
-      flex-direction: row !important;      /* Строго в линию */
-      justify-content: center !important;  /* По центру */
-      align-items: center !important;
-      flex-wrap: nowrap !important;        /* Запрещаем перенос строк */
-      gap: 10px !important;                /* Отступ между кнопками */
-      width: 100% !important;
-      margin-top: 15px !important;
-    }
-  
-    /* Убираем блочное поведение у тегов ссылок */
-    .map-link {
-      display: inline-block !important;
-      width: auto !important;
-      margin: 0 !important;
-    }
-  
-    /* Ужимаем кнопки */
-    .map-btn {
-      width: 135px !important;            /* Аккуратная фиксированная ширина */
-      padding: 10px 4px !important;        /* Внутренние отступы */
-      font-size: 0.85rem !important;       /* Размер шрифта */
-      white-space: nowrap !important;      /* Текст не рвется */
-    }
-  
-    /* Исправляем шрифт в блоке Кафе (убираем Times New Roman) */
-    .location-section,
-    .location-section h3,
-    .location-section p,
-    .location-section span,
-    .location-section strong {
-      font-family: var(--font-body) !important; /* Принудительно Montserrat */
-      font-style: normal !important;            /* Убираем лишний наклон */
-    }
-  
-    /* Делаем название кафе и адрес акцентными */
-    .location-section strong {
-      font-weight: 600 !important;              /* Красивая благородная жирность */
-      color: var(--text) !important;
-    }
-  
-  } /* КОРРЕКТНОЕ ЗАКРЫТИЕ МОБИЛЬНОГО МЕДИА-ЗАПРОСА */
-  
-  
-  /* ==========================================================================
-     ГЛОБАЛЬНЫЙ СИЛОВОЙ ФИКС (ДЛЯ ВСЕХ ЭКРАНОВ)
-     ========================================================================== */
-  
-  /* Жестко привязываем плавность к моменту открытия конверта */
+@media screen and (max-width: 767px) {
+
+  /* Карточки деталей (Дата, Время) — держим аккуратный горизонтальный ряд */
+  .details {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4px !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .detail-card {
+    padding: 8px 2px !important;
+    min-height: 90px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .detail-card_icon { font-size: 1.1rem !important; margin-bottom: 2px !important; }
+  .detail-card h3 { font-size: 0.75rem !important; letter-spacing: 0 !important; margin-bottom: 1px !important; }
+  .detail-card p { font-size: 0.68rem !important; line-height: 1.1 !important; }
+
+  /* Кнопки карт — тот же ряд и размеры, что на ПК */
+  .maps-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin-top: 15px !important;
+  }
+
+  .map-link {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  .section--venue .card--venue h3,
+  .section--venue .card--venue p {
+    font-family: var(--font-body) !important;
+    font-style: normal !important;
+  }
+
+} /* КОРРЕКТНОЕ ЗАКРЫТИЕ МОБИЛЬНОГО МЕДИА-ЗАПРОСА */
+
+
+/* ==========================================================================
+   ГЛОБАЛЬНЫЙ СИЛОВОЙ ФИКС (ДЛЯ ВСЕХ ЭКРАНОВ)
+   ========================================================================== */
+
+/* Мобильные / Android (Яндекс.Браузер): дольше и плавнее */
+@media (max-width: 768px) {
+  .envelope {
+    perspective: 1200px;
+    -webkit-perspective: 1200px;
+  }
+
+  .envelope__flap {
+    will-change: transform;
+  }
+
   .envelope--opening .envelope__flap {
-    transition: transform 4.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    animation-duration: 6.5s;
+    -webkit-animation-duration: 6.5s;
+    animation-timing-function: cubic-bezier(0.33, 0.12, 0.08, 1);
+    -webkit-animation-timing-function: cubic-bezier(0.33, 0.12, 0.08, 1);
   }
-  
-  /* Сносим черную обводку у кнопок карт везде (ПК + Мобилки) */
-  .registry-section button, 
-  .location-section button,
-  .map-btn,
-  .maps-actions button {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
+
+  .intro--opening {
+    transition:
+      opacity 1.3s cubic-bezier(0.4, 0, 0.2, 1) 5.9s,
+      visibility 1.3s cubic-bezier(0.4, 0, 0.2, 1) 5.9s;
   }
-  
-  
-  
+
+  .envelope--opening .envelope__seal {
+    transition:
+      transform 0.5s ease,
+      opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s,
+      box-shadow 0.25s ease;
+  }
+}
+
+/* Убираем стандартную чёрную обводку у кнопок карт в блоке регистрации */
+.section--registry .maps-actions button.map-btn {
+  border: none !important;
+  outline: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
