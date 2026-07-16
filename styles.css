@@ -254,6 +254,7 @@ body.is-locked {
   box-shadow: 0 2px 8px rgba(60, 30, 45, 0.06);
   pointer-events: none;
   will-change: transform;
+  transition: transform 1.15s cubic-bezier(0.33, 0.02, 0.15, 1);
 }
 
 @keyframes envelope-flap-open {
@@ -281,8 +282,8 @@ body.is-locked {
 }
 
 .envelope--opening .envelope__flap {
-  animation: envelope-flap-open 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  -webkit-animation: envelope-flap-open 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  transform: rotateX(-175deg) translateZ(0);
+  -webkit-transform: rotateX(-175deg) translateZ(0);
 }
 
 .envelope__seal {
@@ -997,59 +998,5 @@ main {
   .intro__flowers {
     object-fit: contain !important;
     object-position: left center !important;
-  }
-
-  .intro__title,
-  .intro__hint {
-    color: var(--text-soft) !important;
-  }
-
-  .envelope__back {
-    background: #fafafa !important;
-    border-color: #e6dce0 !important;
-  }
-
-  .envelope__pocket {
-    background: #ffffff !important;
-    border-color: #e6dce0 !important;
-  }
-
-  .envelope__flap {
-    background: linear-gradient(180deg, #ffffff 0%, #f7f5f6 100%) !important;
-    border-color: #e6dce0 !important;
-  }
-
-  .envelope__seal {
-    background-color: #c41e3a !important;
-    background-image: radial-gradient(circle at 32% 28%, #f04a5e 0%, #c41e3a 45%, #9a1528 100%) !important;
-  }
-
-  .page-bg-wrap {
-    -webkit-filter: none !important;
-    filter: none !important;
-  }
-
-  .hero,
-  .card,
-  .section__title,
-  .countdown__item,
-  .detail-card,
-  .footer {
-    background: var(--card-bg) !important;
-    color: inherit !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-
-  .btn:hover { transform: none; }
-
-  .envelope__flap,
-  .envelope__seal,
-  .intro,
-  .site {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
   }
 }
