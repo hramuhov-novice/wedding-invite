@@ -87,41 +87,26 @@ function initIntro() {
   }
 
   let opened = false;
-  const isMobileIntro = window.matchMedia("(max-width: 768px)").matches;
-  const contentRevealMs = isMobileIntro ? 6800 : 1100;
-  const introRemoveMs = isMobileIntro ? 8200 : 2400;
 
   function openInvite() {
     if (opened) return;
     opened = true;
     seal.disabled = true;
 
-    const flap = envelope.querySelector(".envelope__flap");
-    if (flap) {
-      envelope.classList.remove("envelope--opening");
-      flap.style.animation = "none";
-      flap.style.webkitAnimation = "none";
-      void flap.offsetHeight;
-      flap.style.animation = "";
-      flap.style.webkitAnimation = "";
-    }
+    // Запускаем анимации синхронно - без дополнительных requestAnimationFrame
+    envelope.classList.add("envelope--opening");
+    intro.classList.add("intro--opening");
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (flap) void flap.getBoundingClientRect();
-        envelope.classList.add("envelope--opening");
-        intro.classList.add("intro--opening");
-      });
-    });
-
+    // Показываем основной контент после завершения анимации конверта (4.5s по CSS)
     window.setTimeout(() => {
       intro.classList.add("intro--done");
       showMainContent();
-    }, contentRevealMs);
+    }, 4500);
 
+    // Удаляем intro из DOM после завершения всех переходов
     window.setTimeout(() => {
       intro.remove();
-    }, introRemoveMs);
+    }, 5700);
   }
 
   bindSealOpen(seal, openInvite);
