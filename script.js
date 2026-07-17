@@ -177,7 +177,7 @@ function initIntro() {
         animateFlapOpen(flapWrap);
       }
     });
-
+    
     window.setTimeout(() => {
       intro.classList.add("intro--done");
       showMainContent();
