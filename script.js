@@ -55,7 +55,31 @@ function bindSealOpen(seal, openInvite) {
     event.preventDefault();
     openInvite();
   }
+  function bindSealOpen(seal, openInvite) {
+  let activated = false;
 
+  function activate(event) {
+    if (activated) return;
+    activated = true;
+    event.preventDefault();
+    openInvite();
+  }
+
+  // Оставляем только чистый клик — он идеально работает везде
+  seal.addEventListener("click", (event) => {
+    activate(event);
+  });
+
+  // Доступность для клавиатуры (Enter / Пробел)
+  seal.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      activate(event);
+    }
+  });
+}
+/*
+старый вариант 
   if (window.PointerEvent) {
     seal.addEventListener("pointerup", activate);
   }
@@ -67,7 +91,7 @@ function bindSealOpen(seal, openInvite) {
     }
     activate(event);
   });
-
+*/
   seal.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
