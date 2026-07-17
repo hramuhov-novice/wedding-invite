@@ -1332,11 +1332,24 @@ main {
       box-shadow 0.25s ease;
   }
 }
-
+/* это ласт что добавили что бы конверт ожил*/
 /* Убираем стандартную чёрную обводку у кнопок карт в блоке регистрации */
 .section--registry .maps-actions button.map-btn {
   border: none !important;
   outline: none !important;
   -webkit-appearance: none;
   appearance: none;
+}
+/* Финальный пинок для открытия клапана */
+.envelope--opening .envelope__flap-wrap {
+  transform: rotateX(-170deg) !important;
+  -webkit-transform: rotateX(-170deg) !important;
+  transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.15, 1) !important;
+}
+
+/* На всякий случай плавно скрываем саму печать после клика, чтобы она не торчала в воздухе */
+.envelope--opening .envelope__seal {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.5s ease !important;
 }
