@@ -233,8 +233,51 @@ body.is-locked {
   -webkit-user-select: none;
   user-select: none;
 }
+/* это вариант гугла*/
+/* Обёртка клапана: добавили will-change для JS и заставили браузер рендерить изнанку */
+.envelope__flap-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 22%;
+  height: 52%;
+  transform-origin: top center;
+  -webkit-transform-origin: top center;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform: rotateX(0deg);
+  -webkit-transform: rotateX(0deg);
+  z-index: 3;
+  pointer-events: none;
+  /* КРИТИЧНО ДЛЯ СКРИПТА: подсказываем браузеру готовить видеокарту к анимации */
+  will-change: transform; 
+}
 
+/* Сам треугольник клапана */
+.envelope__flap {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f7f5f6 100%);
+  border: 1px solid #e6dce0;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  /* МЕНЯЕМ НА VISIBLE: чтобы клапан не исчезал, когда откидывается вверх на 170 градусов */
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+  box-shadow: 0 2px 8px rgba(60, 30, 45, 0.06);
+  pointer-events: none;
+}
+/*это подстраховка от гугла*/
+/* Запасной триггер анимации через обычный CSS класс */
+.envelope--opening .envelope__flap-wrap {
+  transform: rotateX(-170deg) !important;
+  -webkit-transform: rotateX(-170deg) !important;
+  transition: transform 5.5s cubic-bezier(0.25, 0.1, 0.15, 1);
+}
+/*это подстраховка от гугла*/
+
+/*не работает но это до правки*/
 /* Обёртка клапана: только 3D-поворот (clip-path — на внутреннем элементе) */
+/*
 .envelope__flap-wrap {
   position: absolute;
   left: 0;
@@ -262,7 +305,7 @@ body.is-locked {
   box-shadow: 0 2px 8px rgba(60, 30, 45, 0.06);
   pointer-events: none;
 }
-
+*/
 @keyframes envelope-flap-open {
   from {
     transform: rotateX(0deg);
