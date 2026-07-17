@@ -155,7 +155,41 @@ function initIntro() {
         flapWrap.style.transform = `rotateX(${FLAP_OPEN_ANGLE}deg)`;
       });
   }
+  /*вот ниже кусок что заменили*/
+  function openInvite() {
+  if (opened) return;
+  opened = true;
+  seal.disabled = true;
 
+  const flapWrap = envelope.querySelector(".envelope__flap-wrap");
+
+  // Устанавливаем переменную длительности
+  envelope.style.setProperty("--flap-open-duration", `${FLAP_OPEN_DURATION}ms`);
+
+  // МЫ УДАЛИЛИ ПРОБЛЕМНЫЙ intro.style.transition ОТСЮДА!
+  
+  requestAnimationFrame(() => {
+    // Теперь эти классы гарантированно добавятся!
+    envelope.classList.add("envelope--opening");
+    intro.classList.add("intro--opening");
+
+    if (flapWrap && typeof flapWrap.animate === "function") {
+      envelope.classList.add("envelope--js-flap");
+      animateFlapOpen(flapWrap);
+    }
+  });
+
+  window.setTimeout(() => {
+    intro.classList.add("intro--done");
+    showMainContent();
+  }, CONTENT_REVEAL_MS);
+
+  window.setTimeout(() => {
+    intro.remove();
+  }, INTRO_REMOVE_MS);
+}
+
+/* предложил правки по открытию это не работало но пусть будет
   function openInvite() {
     if (opened) return;
     opened = true;
@@ -187,7 +221,7 @@ function initIntro() {
       intro.remove();
     }, INTRO_REMOVE_MS);
   }
-
+*/
   bindSealOpen(seal, openInvite);
 }
 
