@@ -253,8 +253,6 @@ body.is-locked {
   z-index: 3;
   box-shadow: 0 2px 8px rgba(60, 30, 45, 0.06);
   pointer-events: none;
-  will-change: transform;
-  transition: transform 1.15s cubic-bezier(0.33, 0.02, 0.15, 1);
 }
 
 @keyframes envelope-flap-open {
@@ -282,8 +280,18 @@ body.is-locked {
 }
 
 .envelope--opening .envelope__flap {
-  transform: rotateX(-175deg) translateZ(0);
-  -webkit-transform: rotateX(-175deg) translateZ(0);
+  animation-name: envelope-flap-open;
+  -webkit-animation-name: envelope-flap-open;
+  animation-duration: 4.5s;
+  -webkit-animation-duration: 4.5s;
+  animation-timing-function: cubic-bezier(0.4, 0.2, 0.02, 1);
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0.2, 0.02, 1);
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
 }
 
 .envelope__seal {
@@ -884,6 +892,93 @@ main {
     --bg-crop-top: 16px;
   }
 
+  /* Экран конверта: цветы на всю высоту, розовый фон, текст справа читаемый */
+  .intro {
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: 100svh;
+    overflow: hidden;
+    background-color: var(--intro-bg);
+    background-image: none;
+  }
+
+  .intro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 48%,
+      rgba(247, 212, 212, 0.55) 62%,
+      rgba(247, 212, 212, 0.96) 72%,
+      var(--intro-bg) 82%
+    );
+  }
+
+  .intro__flowers {
+    width: auto;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    object-position: left center;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      #000 0%,
+      #000 62%,
+      rgba(0, 0, 0, 0.55) 78%,
+      transparent 92%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      #000 0%,
+      #000 62%,
+      rgba(0, 0, 0, 0.55) 78%,
+      transparent 92%
+    );
+  }
+
+  .intro__title {
+    width: fit-content;
+    max-width: min(100%, 340px);
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    padding: 0.55rem 1.1rem;
+    background: var(--intro-card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow);
+    border: 1px solid var(--intro-card-border);
+    color: var(--text);
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .intro__hint {
+    width: fit-content;
+    max-width: min(100%, 300px);
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    padding: 0.45rem 0.9rem;
+    background: var(--intro-card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow);
+    border: 1px solid var(--intro-card-border);
+    color: var(--text-soft);
+    opacity: 1;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  /* Плавное открытие конверта на мобильных: не обрезаем 3D-анимацию */
+  .intro--opening {
+    overflow: visible;
+    isolation: auto;
+  }
+
   .hero {
     margin: 0.6rem 0.65rem 0;
     padding: 1rem 1rem 0.85rem;
@@ -906,11 +1001,12 @@ main {
 
   .card h2, .card h3 { font-size: 1.2rem; }
 
-  .btn,
-  .contact-link {
-    width: 100%;
-    max-width: 280px;
-  }
+.btn,
+.contact-link {
+  width: 100%;
+  max-width: 280px;
+  text-decoration: none;
+}
 }
 
 @media (max-width: 480px) {
@@ -920,8 +1016,14 @@ main {
   }
 
   .intro__title {
-    font-size: clamp(1.6rem, 7.5vw, 2.35rem);
+    font-size: clamp(1.45rem, 6.8vw, 2.1rem);
     margin-bottom: 1.1rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .intro__hint {
+    font-size: clamp(0.72rem, 2.6vw, 0.82rem);
+    padding: 0.4rem 0.75rem;
   }
 
   .hero__photo {
@@ -952,6 +1054,15 @@ main {
   .countdown { grid-template-columns: repeat(2, 1fr); }
 
   .details { grid-template-columns: 1fr; }
+
+  .section--details .details {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.3rem;
+  }
+
+  .section--details .detail-card {
+    padding: 0.4rem 0.2rem;
+  }
 }
 
 @media (max-width: 360px) {
@@ -975,9 +1086,57 @@ main {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .contact-item {
+    flex: 1 1 220px;
+    max-width: 280px;
   }
 }
 
+
+/* Яндекс / Android: не инвертировать /* ... existing code ... */
+
+.section--details {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.section--details .section__title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.45rem;
+}
+
+.section--details .details {
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.section--details .detail-card {
+  padding: 0.5rem 0.3rem;
+  border-radius: 12px;
+}
+
+.section--details .detail-card__icon {
+  font-size: 1rem;
+  margin-bottom: 0.1rem;
+}
+
+.section--details .detail-card h3 {
+  font-size: clamp(0.68rem, 2.8vw, 0.85rem);
+  margin-bottom: 0.1rem;
+}
+
+.section--details .detail-card p {
+  font-size: clamp(0.58rem, 2.4vw, 0.72rem);
+  line-height: 1.25;
+}
+
+/* ... rest of code ... */
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: light only;
@@ -999,4 +1158,155 @@ main {
     object-fit: contain !important;
     object-position: left center !important;
   }
+
+  .intro__title,
+  .intro__hint {
+    color: var(--text-soft) !important;
+  }
+
+  .envelope__back {
+    background: #fafafa !important;
+    border-color: #e6dce0 !important;
+  }
+
+  .envelope__pocket {
+    background: #ffffff !important;
+    border-color: #e6dce0 !important;
+  }
+
+  .envelope__flap {
+    background: linear-gradient(180deg, #ffffff 0%, #f7f5f6 100%) !important;
+    border-color: #e6dce0 !important;
+  }
+
+  .envelope__seal {
+    background-color: #c41e3a !important;
+    background-image: radial-gradient(circle at 32% 28%, #f04a5e 0%, #c41e3a 45%, #9a1528 100%) !important;
+  }
+
+  .page-bg-wrap {
+    -webkit-filter: none !important;
+    filter: none !important;
+  }
+
+  .hero,
+  .card,
+  .section__title,
+  .countdown__item,
+  .detail-card,
+  .footer {
+    background: var(--card-bg) !important;
+    color: inherit !important;
+  }
+
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .btn:hover { transform: none; }
+  .envelope__flap,
+  .envelope__seal,
+  .intro,
+  .site {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   ФИНАЛЬНЫЙ ЧИСТОВЫЙ КОД ДЛЯ МОБИЛОК (В САМЫЙ НИЗ ФАЙЛА)
+   ========================================================================== */
+@media screen and (max-width: 767px) {
+
+  /* Карточки деталей (Дата, Время) — держим аккуратный горизонтальный ряд */
+  .details {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4px !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .detail-card {
+    padding: 8px 2px !important;
+    min-height: 90px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .detail-card_icon { font-size: 1.1rem !important; margin-bottom: 2px !important; }
+  .detail-card h3 { font-size: 0.75rem !important; letter-spacing: 0 !important; margin-bottom: 1px !important; }
+  .detail-card p { font-size: 0.68rem !important; line-height: 1.1 !important; }
+
+  /* Кнопки карт — тот же ряд и размеры, что на ПК */
+  .maps-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin-top: 15px !important;
+  }
+
+  .map-link {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  .section--venue .card--venue h3,
+  .section--venue .card--venue p {
+    font-family: var(--font-body) !important;
+    font-style: normal !important;
+  }
+
+} /* КОРРЕКТНОЕ ЗАКРЫТИЕ МОБИЛЬНОГО МЕДИА-ЗАПРОСА */
+
+
+/* ==========================================================================
+   ГЛОБАЛЬНЫЙ СИЛОВОЙ ФИКС (ДЛЯ ВСЕХ ЭКРАНОВ)
+   ========================================================================== */
+
+/* Мобильные / Android (Яндекс.Браузер): дольше и плавнее */
+@media (max-width: 768px) {
+  .envelope {
+    perspective: 1200px;
+    -webkit-perspective: 1200px;
+  }
+
+  .envelope__flap {
+    will-change: transform;
+  }
+
+  .envelope--opening .envelope__flap {
+    animation-duration: 6.5s;
+    -webkit-animation-duration: 6.5s;
+    animation-timing-function: cubic-bezier(0.33, 0.12, 0.08, 1);
+    -webkit-animation-timing-function: cubic-bezier(0.33, 0.12, 0.08, 1);
+  }
+
+  .intro--opening {
+    transition:
+      opacity 1.3s cubic-bezier(0.4, 0, 0.2, 1) 5.9s,
+      visibility 1.3s cubic-bezier(0.4, 0, 0.2, 1) 5.9s;
+  }
+
+  .envelope--opening .envelope__seal {
+    transition:
+      transform 0.5s ease,
+      opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s,
+      box-shadow 0.25s ease;
+  }
+}
+
+/* Убираем стандартную чёрную обводку у кнопок карт в блоке регистрации */
+.section--registry .maps-actions button.map-btn {
+  border: none !important;
+  outline: none !important;
+  -webkit-appearance: none;
+  appearance: none;
 }
