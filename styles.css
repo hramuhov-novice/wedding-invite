@@ -74,7 +74,7 @@ body.is-locked {
   padding: max(2.5rem, calc(env(safe-area-inset-top) + 1.5rem)) 1.25rem max(1rem, env(safe-area-inset-bottom));
   background-color: var(--intro-bg);
   /* Плавный переход для закрытия экрана */
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 0.6), visibility 0.6s cubic-bezier(0.4, 0, 0.2, 0.6);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 0.4), visibility 0.4s cubic-bezier(0.4, 0, 0.2, 0.4);
   will-change: opacity, visibility;
 }
 
@@ -82,8 +82,8 @@ body.is-locked {
 .intro--opening {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 0.6), 
-              visibility 1s cubic-bezier(0.4, 0, 0.2, 0.6);
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 0.4), 
+              visibility 1s cubic-bezier(0.4, 0, 0.2, 0.4);
 }
 
 .intro__flowers {
