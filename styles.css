@@ -185,8 +185,10 @@ body.is-locked {
   perspective: 900px;
   -webkit-perspective: 900px;
   perspective-origin: top center;
- /* transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;*/
+ /* клод раскоментить */
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+   /*две строчки*/ 
   overflow: visible;
   pointer-events: auto;
   -webkit-filter: none !important;
@@ -276,7 +278,8 @@ body.is-locked {
   z-index: 3;
   pointer-events: none;
   will-change: transform; 
-transition: transform 5s cubic-bezier(1, 1.50, 2, 2.50) !important;
+/*клод
+    transition: transform 5s cubic-bezier(1, 1.50, 2, 2.50) !important;*/
 }
 
 /* Сам треугольник клапана */
@@ -1360,15 +1363,39 @@ main {
   -webkit-appearance: none;
   appearance: none;
 }
-/* Финальный пинок для открытия клапана */
+/*клод добавил*/
+.envelope__flap-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 22%;
+  height: 52%;
+  transform-origin: top center;
+  -webkit-transform-origin: top center;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform: rotateX(0deg);
+  -webkit-transform: rotateX(0deg);
+  z-index: 3;
+  pointer-events: none;
+  will-change: transform;
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+  transition: transform 2.2s cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.envelope--opening .envelope__flap-wrap {
+  transform: rotateX(-170deg);
+  -webkit-transform: rotateX(-170deg);
+}
+/* клод 
 .envelope--opening .envelope__flap-wrap {
   transform: rotateX(-170deg) !important;
   -webkit-transform: rotateX(-170deg) !important;
-  /* Ставь 1.2s или 1.5s — теперь браузер железно применит эту скорость!*/
   transition: transform 5s cubic-bezier(1, 1.50, 2, 2.50) !important;
 }
-
-/* На всякий случай плавно скрываем саму печать после клика */
+*/
+/*На всякий случай плавно скрываем саму печать после клика */
 .envelope--opening .envelope__seal {
   opacity: 0 !important;
   pointer-events: none !important;
