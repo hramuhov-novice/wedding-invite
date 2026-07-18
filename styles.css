@@ -1371,7 +1371,7 @@ main {
   transform: rotateX(-170deg) !important;
   -webkit-transform: rotateX(-170deg) !important;
   /* Ставь 1.2s или 1.5s — теперь браузер железно применит эту скорость! */
-  transition: transform 2.5s cubic-bezier(0.25, 0.1, 0.15, 1) !important;
+  transition: transform 5s cubic-bezier(0.25, 0.1, 0.15, 1) !important;
 }
 
 /* На всякий случай плавно скрываем саму печать после клика */
