@@ -1370,38 +1370,13 @@ main {
 .envelope--opening .envelope__flap-wrap {
   transform: rotateX(-170deg) !important;
   -webkit-transform: rotateX(-170deg) !important;
+  /* Ставь 1.2s или 1.5s — теперь браузер железно применит эту скорость! */
   transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.15, 1) !important;
 }
 
-/* На всякий случай плавно скрываем саму печать после клика, чтобы она не торчала в воздухе */
+/* На всякий случай плавно скрываем саму печать после клика */
 .envelope--opening .envelope__seal {
   opacity: 0 !important;
   pointer-events: none !important;
   transition: opacity 0.5s ease !important;
-} 
-/* далее правки которые для работы пустого скрипта */ 
-
-/* Простая CSS-анимация открытия крышки */
-.envelope--opening .envelope__flap-wrap {
-  transform: rotateX(-170deg) !important;
-  -webkit-transform: rotateX(-170deg) !important;
-  transition: transform 0.6s ease-in-out !important; /* Откроется быстро и плавно */
 }
-
-/* Исправление обрезки для 3D */
-.envelope {
-  overflow: visible !important;
-}
-.envelope__flap {
-  backface-visibility: visible !important;
-  -webkit-backface-visibility: visible !important;
-}
-
-/* Плавное исчезновение подложки интро */
-.intro--opening {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transition: opacity 0.8s ease 0.4s, visibility 0.8s ease 0.4s !important;
-}
-
-
