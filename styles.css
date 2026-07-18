@@ -273,39 +273,6 @@ body.is-locked {
   box-shadow: 0 2px 8px rgba(60, 30, 45, 0.06);
   pointer-events: none;
 }
-/*это подстраховка от гугла*/
-
-/*не работает но это до правки*/
-/* Обёртка клапана: только 3D-поворот (clip-path — на внутреннем элементе) */
-/*
-.envelope__flap-wrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 22%;
-  height: 52%;
-  transform-origin: top center;
-  -webkit-transform-origin: top center;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  transform: rotateX(0deg);
-  -webkit-transform: rotateX(0deg);
-  z-index: 3;
-  pointer-events: none;
-}
-
-.envelope__flap {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, #ffffff 0%, #f7f5f6 100%);
-  border: 1px solid #e6dce0;
-  clip-path: polygon(0 0, 50% 100%, 100% 0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  box-shadow: 0 2px 8px rgba(60, 30, 45, 0.06);
-  pointer-events: none;
-}
-*/
 @keyframes envelope-flap-open {
   from {
     transform: rotateX(0deg);
@@ -329,20 +296,6 @@ body.is-locked {
     transform: rotateX(-170deg);
   }
 }
-
-/* CSS-запасной вариант, если Web Animations API недоступен */
-/* временно убрать проверить
-.envelope--opening:not(.envelope--js-flap) .envelope__flap-wrap {
-  animation-name: envelope-flap-open;
-  -webkit-animation-name: envelope-flap-open;
-  animation-duration: var(--flap-open-duration, 5.5s);
-  -webkit-animation-duration: var(--flap-open-duration, 5.5s);
-  animation-timing-function: cubic-bezier(0.25, 0.1, 0.15, 1);
-  -webkit-animation-timing-function: cubic-bezier(0.25, 0.1, 0.15, 1);
-  animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
-}*/
-
 .envelope__seal {
   position: absolute;
   left: 50%;
