@@ -178,15 +178,15 @@ body.is-locked {
 .envelope {
   position: relative;
   z-index: 2;
-  flex-shrink: 0;
+  /*flex-shrink: 0;*/
   margin-top: clamp(0.5rem, 3vh, 1.75rem);
   width: min(300px, 80vw);
   height: 198px;
   perspective: 900px;
   -webkit-perspective: 900px;
   perspective-origin: top center;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
+ /* transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;*/
   overflow: visible;
   pointer-events: auto;
   -webkit-filter: none !important;
@@ -269,7 +269,7 @@ body.is-locked {
   height: 52%;
   transform-origin: top center;
   -webkit-transform-origin: top center;
-  transform-style: preserve-3d;
+  /*transform-style: preserve-3d;*/ /*вернуть*/
   -webkit-transform-style: preserve-3d;
   transform: rotateX(0deg);
   -webkit-transform: rotateX(0deg);
@@ -1364,8 +1364,8 @@ main {
 .envelope--opening .envelope__flap-wrap {
   transform: rotateX(-170deg) !important;
   -webkit-transform: rotateX(-170deg) !important;
-  /* Ставь 1.2s или 1.5s — теперь браузер железно применит эту скорость! 
-  transition: transform 5s cubic-bezier(1, 1.50, 2, 2.50) !important;*/
+  /* Ставь 1.2s или 1.5s — теперь браузер железно применит эту скорость!*/
+  transition: transform 5s cubic-bezier(1, 1.50, 2, 2.50) !important;
 }
 
 /* На всякий случай плавно скрываем саму печать после клика */
