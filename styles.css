@@ -386,8 +386,8 @@ body.is-locked {
     0 3px 10px rgba(154, 21, 40, 0.45),
     inset 0 2px 4px rgba(255, 255, 255, 0.25),
     inset 0 -3px 6px rgba(0, 0, 0, 0.15);
-  transition: transform 0.25s ease, opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
-  -webkit-filter: none !important;
+ /*убрать если не поможет transition: transform 0.25s ease, opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+  -webkit-filter: none !important;*/
   filter: none !important;
 }
 
@@ -769,7 +769,7 @@ main {
   font-weight: 500;
   white-space: nowrap;
   box-sizing: border-box;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+ /* убрать есои не поможет transition: transform 0.2s, box-shadow 0.2s, background 0.2s; */
   box-shadow: 0 4px 12px rgba(196, 93, 133, 0.3);
 }
 .map-btn:hover {
@@ -811,7 +811,7 @@ main {
   font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.05em;
-  transition: transform 0.2s, box-shadow 0.2s;
+/* убрать  transition: transform 0.2s, box-shadow 0.2s;*/
   box-shadow: 0 4px 16px rgba(196, 93, 133, 0.35);
 }
 
