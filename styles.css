@@ -293,13 +293,6 @@ body.is-locked {
   pointer-events: none;
 }
 /*это подстраховка от гугла*/
-/* Запасной триггер анимации через обычный CSS класс */
-.envelope--opening .envelope__flap-wrap {
-  transform: rotateX(-170deg) !important;
-  -webkit-transform: rotateX(-170deg) !important;
-  transition: transform 5.5s cubic-bezier(0.25, 0.1, 0.15, 1);
-}
-/*это подстраховка от гугла*/
 
 /*не работает но это до правки*/
 /* Обёртка клапана: только 3D-поворот (clip-path — на внутреннем элементе) */
