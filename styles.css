@@ -80,9 +80,10 @@ body.is-locked {
 
 /* Когда конверт начинает открываться — гасим подложку с задержкой в 3.96 секунд */
 .intro--opening {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transition-delay: 3960ms !important; /* Твой INTRO_FADE_DELAY_MS */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), 
+              visibility 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /*ещё  правки авось сработает*/
@@ -174,21 +175,19 @@ body.is-locked {
 .intro--done .intro__hint {
   opacity: 0;
 }
-
 .envelope {
   position: relative;
   z-index: 2;
-  /*flex-shrink: 0;*/
   margin-top: clamp(0.5rem, 3vh, 1.75rem);
   width: min(300px, 80vw);
   height: 198px;
   perspective: 900px;
   -webkit-perspective: 900px;
   perspective-origin: top center;
- /* клод раскоментить */
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-   /*две строчки*/ 
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   overflow: visible;
   pointer-events: auto;
   -webkit-filter: none !important;
@@ -271,15 +270,16 @@ body.is-locked {
   height: 52%;
   transform-origin: top center;
   -webkit-transform-origin: top center;
-  /*transform-style: preserve-3d;*/ /*вернуть*/
+  transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   transform: rotateX(0deg);
   -webkit-transform: rotateX(0deg);
   z-index: 3;
   pointer-events: none;
   will-change: transform; 
-/*клод
-    transition: transform 5s cubic-bezier(1, 1.50, 2, 2.50) !important;*/
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+  transition: transform 2.2s cubic-bezier(0.45, 0, 0.2, 1);
 }
 
 /* Сам треугольник клапана */
@@ -1355,7 +1355,6 @@ main {
       box-shadow 0.25s ease;
   }
 }
-/* это ласт что добавили что бы конверт ожил*/
 /* Убираем стандартную чёрную обводку у кнопок карт в блоке регистрации */
 .section--registry .maps-actions button.map-btn {
   border: none !important;
