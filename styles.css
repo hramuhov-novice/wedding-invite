@@ -275,8 +275,8 @@ body.is-locked {
   -webkit-transform: rotateX(0deg);
   z-index: 3;
   pointer-events: none;
-  /* КРИТИЧНО ДЛЯ СКРИПТА: подсказываем браузеру готовить видеокарту к анимации */
   will-change: transform; 
+transition: transform 5s cubic-bezier(1, 1.50, 2, 2.50) !important;
 }
 
 /* Сам треугольник клапана */
@@ -1364,8 +1364,8 @@ main {
 .envelope--opening .envelope__flap-wrap {
   transform: rotateX(-170deg) !important;
   -webkit-transform: rotateX(-170deg) !important;
-  /* Ставь 1.2s или 1.5s — теперь браузер железно применит эту скорость! */
-  transition: transform 5s cubic-bezier(1, 1.50, 2, 2.50) !important;
+  /* Ставь 1.2s или 1.5s — теперь браузер железно применит эту скорость! 
+  transition: transform 5s cubic-bezier(1, 1.50, 2, 2.50) !important;*/
 }
 
 /* На всякий случай плавно скрываем саму печать после клика */
