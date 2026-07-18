@@ -1360,7 +1360,7 @@ main {
   appearance: none;
 }
 /* Финальный пинок для открытия клапана */
-.envelope--opening .envelope__flap-wrap {
+.intro--opening .envelope--opening .envelope__flap-wrap {
   transform: rotateX(-170deg) !important;
   -webkit-transform: rotateX(-170deg) !important;
   /* Ставь 1.2s или 1.5s — теперь браузер железно применит эту скорость! */
@@ -1368,7 +1368,7 @@ main {
 }
 
 /* На всякий случай плавно скрываем саму печать после клика */
-.envelope--opening .envelope__seal {
+.intro--opening .envelope--opening .envelope__seal {
   opacity: 0 !important;
   pointer-events: none !important;
   transition: opacity 0.5s ease !important;
