@@ -350,6 +350,7 @@ body.is-locked {
 }
 
 /* CSS-запасной вариант, если Web Animations API недоступен */
+/* временно убрать проверить
 .envelope--opening:not(.envelope--js-flap) .envelope__flap-wrap {
   animation-name: envelope-flap-open;
   -webkit-animation-name: envelope-flap-open;
@@ -359,7 +360,7 @@ body.is-locked {
   -webkit-animation-timing-function: cubic-bezier(0.25, 0.1, 0.15, 1);
   animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards;
-}
+}*/
 
 .envelope__seal {
   position: absolute;
@@ -1360,7 +1361,7 @@ main {
   appearance: none;
 }
 /* Финальный пинок для открытия клапана */
-.intro--opening .envelope--opening .envelope__flap-wrap {
+.envelope--opening .envelope__flap-wrap {
   transform: rotateX(-170deg) !important;
   -webkit-transform: rotateX(-170deg) !important;
   /* Ставь 1.2s или 1.5s — теперь браузер железно применит эту скорость! */
@@ -1368,7 +1369,7 @@ main {
 }
 
 /* На всякий случай плавно скрываем саму печать после клика */
-.intro--opening .envelope--opening .envelope__seal {
+.envelope--opening .envelope__seal {
   opacity: 0 !important;
   pointer-events: none !important;
   transition: opacity 0.5s ease !important;
