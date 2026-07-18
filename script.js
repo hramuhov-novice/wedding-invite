@@ -73,7 +73,7 @@ function initIntro() {
     }, introFadeDelay);
 
     // Сайт показываем ПОСЛЕ того как крышка открылась + intro fade завершился
-    const totalWait = introFadeDelay + 6000; // 6000ms = длительность fade из CSS intro--opening
+    const totalWait = introFadeDelay + 400; // 400ms = длительность fade из CSS intro--opening
     setTimeout(() => {
       showMainContent();
       intro.remove();
